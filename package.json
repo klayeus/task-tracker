@@ -1,0 +1,17 @@
+{
+  "name": "task-tracker",
+  "version": "1.0.0",
+  "description": "Task Tracker Application",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^12.0.5"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Klaus Klatt, Matthäus Kepski",
+  "license": "ISC"
+}
