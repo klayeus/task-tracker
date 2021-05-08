@@ -5,11 +5,15 @@
   "main": "main.js",
   "dependencies": {},
   "devDependencies": {
-    "electron": "^12.0.5"
+    "electron": "^12.0.5",
+    "electron-builder": "^22.11.1",
+    "nodemon": "^2.0.7"
   },
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "nodemon --exec electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder build -w"
   },
   "keywords": [],
   "author": "Klaus Klatt, Matthäus Kepski",
