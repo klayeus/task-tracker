@@ -19,5 +19,18 @@
   },
   "keywords": [],
   "author": "Klaus Klatt, Matthäus Kepski",
-  "license": "ISC"
+  "license": "ISC",
+  "build": {
+		"productName": "Task Tracker",
+		"mac": {
+			"category": "public.app-category.lifestyle"
+		},
+		"dmg": {
+			"icon": false
+		},
+		"linux": {
+			"target": ["AppImage"],
+			"category": "Office"
+		}
+	}
 }
