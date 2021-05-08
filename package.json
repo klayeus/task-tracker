@@ -13,7 +13,9 @@
     "start": "electron .",
     "watch": "nodemon --exec electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "electron-builder build -w"
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder build -m -w -l",
+    "release": "electron-builder build -m -w -l -p always"
   },
   "keywords": [],
   "author": "Klaus Klatt, Matthäus Kepski",
