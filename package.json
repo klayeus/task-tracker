@@ -1,34 +1,40 @@
 {
-  "name": "task-tracker",
-  "version": "1.0.0",
-  "description": "Task Tracker Application",
-  "main": "main.js",
-  "dependencies": {},
-  "devDependencies": {
-    "electron": "^12.0.5",
-    "electron-builder": "^22.11.1",
-    "nodemon": "^2.0.7"
+ "name": "task-tracker",
+ "version": "1.0.0",
+ "description": "Task Tracker Application",
+ "main": "main.js",
+ "dependencies": {
+  "electron-window-state": "^5.0.3",
+  "jquery": "^3.6.0",
+  "materialize-css": "^1.0.0-rc.2"
+ },
+ "devDependencies": {
+  "electron": "^12.0.5",
+  "electron-builder": "^22.11.1",
+  "nodemon": "^2.0.7"
+ },
+ "scripts": {
+  "start": "electron .",
+  "watch": "nodemon --exec electron .",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "postinstall": "electron-builder install-app-deps"
+ },
+ "keywords": [],
+ "author": "Klaus Klatt, Matthäus Kepski",
+ "license": "ISC",
+ "build": {
+  "productName": "Task Tracker",
+  "mac": {
+   "category": "public.app-category.lifestyle"
   },
-  "scripts": {
-    "start": "electron .",
-    "watch": "nodemon --exec electron .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "electron-builder install-app-deps"
+  "dmg": {
+   "icon": false
   },
-  "keywords": [],
-  "author": "Klaus Klatt, Matthäus Kepski",
-  "license": "ISC",
-  "build": {
-		"productName": "Task Tracker",
-		"mac": {
-			"category": "public.app-category.lifestyle"
-		},
-		"dmg": {
-			"icon": false
-		},
-		"linux": {
-			"target": ["AppImage"],
-			"category": "Office"
-		}
-	}
+  "linux": {
+   "target": [
+    "AppImage"
+   ],
+   "category": "Office"
+  }
+ }
 }
