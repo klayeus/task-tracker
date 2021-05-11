@@ -23,6 +23,8 @@ function createWindow () {
   // Open DevTools - Remove for PRODUCTION!
   win.webContents.openDevTools();
 
+  state.manage(win);
+
   win.loadFile('renderer/main.html')
 }
 
