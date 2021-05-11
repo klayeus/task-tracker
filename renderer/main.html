@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <title>Task Tracker</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body style="background: white;">
     <div class="container">
-        <h1>Task Tracker</h1>
         <div id ="new-item-bar" class="row">
             
             <div class="input-field col s1">
-                <input id="date" type="text" class="datepicker">
+                <input id="date" type="text" placeholder="">
                 <label for="date">Datum</label>
             </div>
 
             <div class="input-field col s1">
-                <input id="from" type="text" class="timepicker">
+                <input id="from" type="text" placeholder="">
                 <label for="from">von</label>
             </div>
 
             <div class="input-field col s1">
-                <input id="to" type="text" class="timepicker">
+                <input id="to" type="text" placeholder="">
                 <label for="to">bis</label>
             </div>
 
             <div class="input-field col s2">
-                <select id="project">
-                    <option value="" disabled selected>Auswahl</option>
+                <select id="project" placeholder="">
+                    <option value="" disabled selected>-</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
                     <option value="3">Option 3</option>
@@ -38,7 +40,7 @@
 
             <div class="input-field col s2">
                 <select id="type">
-                    <option value="" disabled selected>Auswahl</option>
+                    <option value="" disabled selected>-</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
                     <option value="3">Option 3</option>
@@ -46,10 +48,14 @@
                 <label for="type">Typ</label>
             </div>
 
-            <div class="input-field col s5">
-                <textarea id="task" class="materialize-textarea"></textarea>
+            <div class="input-field col s4">
+                <textarea id="task" class="materialize-textarea" placeholder=""></textarea>
                 <label for="task">Aufgabe</label>
               </div>
+            
+            <div class="col s1">
+              <a class="btn-floating btn-large waves-effect waves-light green" onClick="window.electron.saveTask()"><i class="material-icons">add</i></a>
+            </div>
 
         </div>
     </div>

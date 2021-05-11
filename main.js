@@ -15,9 +15,13 @@ function createWindow () {
     minWidth: 800, minHeight: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: false
+      nodeIntegration: false,
+      contextIsolation: true
     }
   })
+
+  // Open DevTools - Remove for PRODUCTION!
+  win.webContents.openDevTools();
 
   win.loadFile('renderer/main.html')
 }
