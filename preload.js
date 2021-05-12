@@ -1,30 +1,51 @@
+// require modules
 const { contextBridge } = require('electron')
 require('materialize-css')
 
-document.addEventListener('DOMContentLoaded', function() {
+// afer everything loaded, execute
+document.addEventListener('DOMContentLoaded', function () {
+
+  // set input fields
+  global.input = {
+    'date': document.getElementById('date'),
+    'from': document.getElementById('from'),
+    'to': document.getElementById('to'),
+    'project': document.getElementById('project'),
+    'type': document.getElementById('type'),
+    'task': document.getElementById('task')
+  }
+
+  // initialize materialze select fields
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems, {});
 
+  // set current date
   let curDateObj = new Date()
-  curDate = curDateObj.getDate()+'.'+(curDateObj.getMonth()+1)
-  const dateInput = document.getElementById('date')
-  dateInput.value = curDate
+  curDate = curDateObj.getDate() + '.' + (curDateObj.getMonth() + 1)
+  input.date.value = curDate
+
+  // init storage
+  global.storage = JSON.parse(localStorage.getItem('tt-tasks')) || []
 });
 
+// inject functions into window, like "window.tasks.save()"
 contextBridge.exposeInMainWorld(
-  'electron',
+  'tasks',
   {
-    saveTask: () => {
+    save: () => {
       let task = {
-        'date': document.getElementById('date').value,
-        'from': document.getElementById('from').value,
-        'to': document.getElementById('to').value,
-        'project': document.getElementById('project').value,
-        'type': document.getElementById('type').value,
-        'task': document.getElementById('task').value
+        'date': input.date.value,
+        'from': input.from.value,
+        'to': input.to.value,
+        'project': input.project.value,
+        'type': input.type.value,
+        'task': input.task.value
       }
-    
+      storage.push(task)
       console.log(task)
+
+      // persist
+      localStorage.setItem('tt-tasks', JSON.stringify(storage))
     }
   }
 )
