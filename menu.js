@@ -11,6 +11,12 @@ module.exports = appWin => {
       label: 'Einstellungen',
       submenu: [
         {
+          label: 'Aufgaben',
+          click: () => {
+            appWin.send('menu-show-tasks')
+          }
+        },
+        {
           label: 'Projekte',
           click: () => {
             appWin.send('menu-show-projects')
@@ -19,7 +25,7 @@ module.exports = appWin => {
         {
           label: 'Aufgabentypen',
           click: () => {
-            appWin.send('menu-open-types')
+            appWin.send('menu-show-types')
           }
         }
       ]

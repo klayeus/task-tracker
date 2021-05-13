@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body style="background: white;">
-    <div class="container">
+    <div id="tasks-window" class="container">
+
         <div id ="new-item-bar" class="row">
             
             <div class="input-field col s1">
@@ -64,6 +65,34 @@
         </div>
 
         <script type="text/javascript" src="renderer.js"></script>
+    </div>
+    <div id="projects-window" class="container" style="display:none">
+        <h4>Konfiguration Projekte</h4>
+        <table>
+            <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+              </tr>
+            </thead>
+    
+            <tbody id="projects-table-tbody">
+            </tbody>
+          </table>
+    </div>
+    <div id="types-window" class="container" style="display:none">
+        <h4>Konfiguration Typen</h4>
+        <table>
+            <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+              </tr>
+            </thead>
+    
+            <tbody id="type-table-tbody">
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
