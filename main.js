@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const windowStateKeeper = require('electron-window-state')
+const appMenu = require('./menu')
 
 function createWindow () {
 
@@ -19,6 +20,9 @@ function createWindow () {
       contextIsolation: true
     }
   })
+
+  // Create main app menu
+  appMenu(win.webContents)
 
   // Open DevTools - Remove for PRODUCTION!
   win.webContents.openDevTools();
