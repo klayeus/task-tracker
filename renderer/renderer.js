@@ -21,11 +21,15 @@ curDate = curDateObj.getDate() + '.' + (curDateObj.getMonth() + 1)
 input.date.value = curDate
 
 // save task to tasks
-function save(){
+function addTask() {
+
+  let date = curDateObj.getFullYear()
+    + '-' + input.date.value.split('.')[1].padStart(2, '0')
+    + '-' + input.date.value.split('.')[0].padStart(2, '0')
+
   let task = {
-    'date': input.date.value,
-    'from': input.from.value,
-    'to': input.to.value,
+    'from': date + 'T' + input.from.value.split(':')[0].padStart(2, '0') + ':' + input.from.value.split(':')[1].padStart(2, '0') + ':00',
+    'to': date + 'T' + input.to.value.split(':')[0].padStart(2, '0') + ':' + input.to.value.split(':')[1].padStart(2, '0') + ':00',
     'project': input.project.value,
     'type': input.type.value,
     'task': input.task.value
@@ -40,25 +44,28 @@ function save(){
 }
 
 // render task
-function render(task){
+function render(task) {
   // Create a new DOM node
   let taskNode = document.createElement('div')
   // Assign classes
   taskNode.setAttribute('class', 'task row ')
 
+  taskFrom = new Date(task.from)
+  taskTo = new Date(task.to)
+
   let dateNode = document.createElement('div')
   dateNode.setAttribute('class', 'col s1')
-  dateNode.innerHTML = task.date
+  dateNode.innerHTML = taskFrom.getDate() + '.' + (taskFrom.getMonth() + 1)
   taskNode.appendChild(dateNode)
 
   let fromNode = document.createElement('div')
   fromNode.setAttribute('class', 'col s1')
-  fromNode.innerHTML = task.from
+  fromNode.innerHTML = taskFrom.getHours() + ':' + taskFrom.getMinutes().toString().padStart(2, '0')
   taskNode.appendChild(fromNode)
 
   let toNode = document.createElement('div')
   toNode.setAttribute('class', 'col s1')
-  toNode.innerHTML = task.to
+  toNode.innerHTML = taskTo.getHours() + ':' + taskTo.getMinutes().toString().padStart(2, '0')
   taskNode.appendChild(toNode)
 
   let projectNode = document.createElement('div')
@@ -78,17 +85,25 @@ function render(task){
 
   // Append new node to "items"
   output.tasks.appendChild(taskNode)
-} 
+}
 
-function addBreak(){
+function addBreak() {
   let breakNode = document.createElement('div')
   breakNode.setAttribute('class', 'task row ')
   breakNode.innerHTML = '<b>- Pause -</b>'
   output.tasks.appendChild(breakNode)
 }
 
-function renderAll(){
-  storage.forEach(task => {
+function renderAll() {
+  storage.forEach((task, i) => {
+    if(storage[i-1]){
+      const lastTaskTo = new Date(storage[i-1].to)
+      const thisTaskFrom = new Date(task.from)
+
+      if(lastTaskTo < thisTaskFrom){
+        addBreak()
+      }
+    }
     render(task)
   })
 }
