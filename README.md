@@ -4,9 +4,15 @@ Are you wondering what you are doing all day at work, and how much time is consu
 
 Instead of managing a macro based excel file to track your tasks, use our Task Tracker standalone desktop application to comfortably track your tasks, light and easy!
 
+## Tech-Stack
+
+Following technologies/frameworks are mainly used:
+- [Electron](https://electronjs.org)
+- [MaterializeCSS](https://materializecss.com)
+
 ## Contributing
 
-## Development setup
+### Development setup
 
 1. Install [GIT](https://git-scm.com/)
 2. Install [NodeJS](https://nodejs.org/)
