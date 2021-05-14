@@ -19,12 +19,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "electron-builder install-app-deps"
   },
+  "repository": "https://github.com/klapekla/task-tracker",
   "keywords": [],
   "author": "Klaus Klatt, Matthäus Kepski",
   "license": "ISC",
   "build": {
     "appId": "de.kl4tt.task-tracker",
     "copyright": "",
+    "publish": {
+      "provider": "github"
+    },
     "productName": "Task Tracker",
     "mac": {
       "category": "public.app-category.productivity",
