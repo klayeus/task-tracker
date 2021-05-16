@@ -1,6 +1,9 @@
 // require modules
 const { contextBridge, ipcRenderer } = require('electron')
 require('materialize-css')
+require('./js/tasks')
+require('./js/projects')
+require('./js/types')
 
 // afer everything loaded, execute
 document.addEventListener('DOMContentLoaded', function () {

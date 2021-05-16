@@ -13,7 +13,9 @@ output = {
 }
 
 // init storage
-storage = JSON.parse(localStorage.getItem('tt-tasks')) || []
+taskStorage = JSON.parse(localStorage.getItem('tt-tasks')) || []
+projectStorage = JSON.parse(localStorage.getItem('tt-projects')) || []
+typeStorage = JSON.parse(localStorage.getItem('tt-types')) || []
 
 // set current date
 let curDateObj = new Date()
@@ -21,7 +23,7 @@ curDate = curDateObj.getDate() + '.' + (curDateObj.getMonth() + 1)
 input.date.value = curDate
 
 // save task to tasks
-function addTask() {
+document.getElementById('add-task').addEventListener('click', e => {
 
   let date = curDateObj.getFullYear()
     + '-' + input.date.value.split('.')[1].padStart(2, '0')
@@ -34,14 +36,14 @@ function addTask() {
     'type': input.type.value,
     'task': input.task.value
   }
-  storage.push(task)
+  taskStorage.push(task)
 
   // render
   render(task)
 
   // persist
-  localStorage.setItem('tt-tasks', JSON.stringify(storage))
-}
+  localStorage.setItem('tt-tasks', JSON.stringify(taskStorage))
+})
 
 // render task
 function render(task) {
@@ -70,12 +72,14 @@ function render(task) {
 
   let projectNode = document.createElement('div')
   projectNode.setAttribute('class', 'col s2')
-  projectNode.innerHTML = task.project
+  projectName = projectStorage.find(e => e.id == task.project)
+  projectNode.innerHTML = projectName.name
   taskNode.appendChild(projectNode)
 
   let typeNode = document.createElement('div')
   typeNode.setAttribute('class', 'col s2')
-  typeNode.innerHTML = task.type
+  typeName = typeStorage.find(e => e.id == task.type)
+  typeNode.innerHTML = typeName.name
   taskNode.appendChild(typeNode)
 
   let textNode = document.createElement('div')
@@ -87,6 +91,13 @@ function render(task) {
   output.tasks.appendChild(taskNode)
 }
 
+function renderSelectOption(e,id,value){
+  let newOption = document.createElement('option')
+  newOption.setAttribute('value',id)
+  newOption.innerText = value
+  e.appendChild(newOption)
+}
+
 function addBreak() {
   let breakNode = document.createElement('div')
   breakNode.setAttribute('class', 'task row ')
@@ -95,9 +106,17 @@ function addBreak() {
 }
 
 function renderAll() {
-  storage.forEach((task, i) => {
-    if(storage[i-1]){
-      const lastTaskTo = new Date(storage[i-1].to)
+  projectStorage.forEach( project => {
+    renderSelectOption(input.project,project.id,project.name)
+  })
+
+  typeStorage.forEach( type => {
+    renderSelectOption(input.type,type.id,type.name)
+  })
+
+  taskStorage.forEach((task, i) => {
+    if(taskStorage[i-1]){
+      const lastTaskTo = new Date(taskStorage[i-1].to)
       const thisTaskFrom = new Date(task.from)
 
       if(lastTaskTo < thisTaskFrom){

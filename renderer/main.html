@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Task Tracker</title>
@@ -7,13 +8,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/custom.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 <body style="background: white;">
     <div id="tasks-window" class="container">
 
-        <div id ="new-item-bar" class="row">
-            
+        <div id="new-task-bar" class="row">
+
             <div class="input-field col s1">
                 <input id="date" type="text" placeholder="">
                 <label for="date">Datum</label>
@@ -32,9 +34,6 @@
             <div class="input-field col s2">
                 <select id="project" placeholder="">
                     <option value="" disabled selected>-</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
                 </select>
                 <label for="project">Projekt</label>
             </div>
@@ -42,9 +41,6 @@
             <div class="input-field col s2">
                 <select id="type">
                     <option value="" disabled selected>-</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
                 </select>
                 <label for="type">Typ</label>
             </div>
@@ -52,10 +48,11 @@
             <div class="input-field col s4">
                 <textarea id="task" class="materialize-textarea" placeholder=""></textarea>
                 <label for="task">Aufgabe</label>
-              </div>
-            
+            </div>
+
             <div class="col s1">
-              <a class="btn-floating btn-large waves-effect waves-light red" onClick="addTask()"><i class="material-icons">add</i></a>
+                <a id="add-task" class="btn-floating btn-large waves-effect waves-light red"><i
+                        class="material-icons">add</i></a>
             </div>
 
         </div>
@@ -65,36 +62,59 @@
         </div>
     </div>
     <div id="projects-window" class="container" style="display:none">
-        <h4>Konfiguration Projekte</h4>
+        <div id="new-project-bar" class="row">
+            <div class="input-field col s5">
+                <input id="project-id" type="text" placeholder="new-project-1">
+                <label for="project-id">Projekt ID</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="project-name" type="text" placeholder="Neues Projekt">
+                <label for="project-name">Projekt Name</label>
+            </div>
+            <div class="col s1">
+                <a id="add-project" class="btn-floating btn-large waves-effect waves-light red"><i
+                        class="material-icons">add</i></a>
+            </div>
+        </div>
         <table>
             <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-              </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
             </thead>
-    
-            <tbody id="projects-table-tbody">
-            </tbody>
-          </table>
+
+            <tbody id="projects-table-tbody"></tbody>
+        </table>
     </div>
     <div id="types-window" class="container" style="display:none">
-        <h4>Konfiguration Typen</h4>
+        <div id="new-type-bar" class="row">
+            <div class="input-field col s5">
+                <input id="type-id" type="text" placeholder="new-type-1">
+                <label for="type-id">Typ ID</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="type-name" type="text" placeholder="Neuer Typ">
+                <label for="type-name">Typ Name</label>
+            </div>
+            <div class="col s1">
+                <a id="add-type" class="btn-floating btn-large waves-effect waves-light red"><i
+                        class="material-icons">add</i></a>
+            </div>
+        </div>
         <table>
             <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-              </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
             </thead>
-    
-            <tbody id="type-table-tbody">
-            </tbody>
+
+            <tbody id="types-table-tbody"></tbody>
         </table>
     </div>
 
-    <script type="text/javascript" src="./js/tasks.js"></script>
-    <script type="text/javascript" src="./js/projects.js"></script>
-    <script type="text/javascript" src="./js/types.js"></script>
+    <script type="text/javascript">require('./renderer')</script>
 </body>
+
 </html>
